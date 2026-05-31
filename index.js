@@ -118,6 +118,10 @@ app.delete('/peliculas/:id', verificarToken, async (req, res) => {
     res.json({ eliminado: !!borrada });
 });
 
+app.get('/', async (req, res) => {
+    res.send('API funcionando correctamente');
+});
+
 app.listen(process.env.PORT || 3001, () => {
     console.log(`API de películas lista en el puerto ${process.env.PORT || 3001}`);
 });
