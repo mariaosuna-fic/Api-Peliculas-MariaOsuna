@@ -1,9 +1,18 @@
 import { Sequelize } from 'sequelize';
 
-const sequelize  = new Sequelize({
-    dialect: 'sqlite',
-    storage: './peliculas_db.sqlite', // Archivo donde se guardarán los datos
-    logging: false
-});
+const sequelize = new Sequelize(
+    process.env.DATABASE_URL,
+    {
+        dialect: 'postgres',
+        protocol: 'postgres',
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        },
+        logging: false
+    }
+);
 
-export default sequelize;   
+export default sequelize;
