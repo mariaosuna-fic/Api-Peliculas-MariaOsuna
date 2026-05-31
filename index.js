@@ -118,6 +118,6 @@ app.delete('/peliculas/:id', verificarToken, async (req, res) => {
     res.json({ eliminado: !!borrada });
 });
 
-app.listen(3000, () => {
-    console.log('API de películas lista en http://localhost:3000');
+app.listen(process.env.PORT || 3001, () => {
+    console.log(`API de películas lista en el puerto ${process.env.PORT || 3001}`);
 });
