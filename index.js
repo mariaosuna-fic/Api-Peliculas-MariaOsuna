@@ -8,8 +8,16 @@ app.use(express.json());
 
 const SECRET_KEY = 'mi_clave_secreta_de_api_maria25!';
 
-// Sincronizar modelo con SQLite
-await sequelize.sync();
+//Iniciar la base de datos
+try {
+    await sequelize.authenticate();
+    console.log('Conexión con PostgreSQL establecida correctamente.');
+
+    await sequelize.sync();
+    console.log('Tablas sincronizadas correctamente.');
+} catch (error) {
+    console.error('Error al iniciar la base de datos:', error);
+}
 
 // LOGIN
 app.post('/login', (req, res) => {
